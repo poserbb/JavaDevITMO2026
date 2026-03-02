@@ -11,12 +11,12 @@ public class ConverterRunner {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(ConverterRunner.class, args);
 
-        TemperatureConverter tempConv = context.getBean(TemperatureConverter.class);
+        TempConvInterface tempConv = context.getBean(TempConvInterface.class);
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("введите температуру в цельсиях" + "\n");
         double c = scanner.nextDouble();
-        System.out.println(c + "°C = " + tempConv.cToF(c) + "°K");
+        System.out.println(c + "°C = " + tempConv.cToK(c) + "°K");
         System.out.println(c + "°C = " + tempConv.cToF(c) + "°F");
 
         System.out.println("введите температуру в кельвинах" + "\n");
