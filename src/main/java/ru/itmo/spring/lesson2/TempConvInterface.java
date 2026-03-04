@@ -2,7 +2,7 @@ package ru.itmo.spring.lesson2;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public interface TempConvInterface  {
 
     double cToK(double c);

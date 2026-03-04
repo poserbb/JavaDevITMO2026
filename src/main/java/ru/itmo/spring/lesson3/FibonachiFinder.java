@@ -1,8 +1,8 @@
 package ru.itmo.spring.lesson3;
 
 import org.springframework.stereotype.Component;
-
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class FibonachiFinder implements FibFinderInterface{

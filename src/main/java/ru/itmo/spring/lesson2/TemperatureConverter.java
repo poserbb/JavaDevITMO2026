@@ -1,16 +1,12 @@
 package ru.itmo.spring.lesson2;
+
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+import static ru.itmo.spring.lesson2.Constants.*;
 
 @Component
+@NoArgsConstructor
 public class TemperatureConverter implements TempConvInterface {
-    private TemperatureConverter() {
-
-    }
-
-    double kelConst = 273.15;
-    double farConst = 32;
-    double nineFive = (double) 9/5;
-    double fiveNine = (double) 5/9;
 
     @Override
     public double cToK(double c) {
