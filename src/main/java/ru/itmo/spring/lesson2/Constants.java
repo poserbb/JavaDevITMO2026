@@ -1,8 +1,5 @@
 package ru.itmo.spring.lesson2;
 
-import lombok.NoArgsConstructor;
-
-
 public class Constants {
 
     public static final double kelConst = 273.15;
