@@ -1,8 +1,10 @@
-package ru.itmo.spring.lesson4;
+package ru.itmo.spring.lesson4.service;
 
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.itmo.spring.lesson4.dao.CityDao;
+import ru.itmo.spring.lesson4.model.City;
 
 import java.util.List;
 import java.util.Optional;

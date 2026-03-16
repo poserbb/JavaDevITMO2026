@@ -1,5 +1,7 @@
-package ru.itmo.spring.lesson4;
+package ru.itmo.spring.lesson4.dao;
 
+
+import ru.itmo.spring.lesson4.model.City;
 
 import java.util.List;
 import java.util.Optional;

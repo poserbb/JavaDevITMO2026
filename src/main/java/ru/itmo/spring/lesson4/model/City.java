@@ -1,4 +1,4 @@
-package ru.itmo.spring.lesson4;
+package ru.itmo.spring.lesson4.model;
 
 
 import lombok.*;
@@ -9,7 +9,6 @@ import lombok.*;
 public class City {
 
 
-    @Setter
     private Long id;
     private int code;
     private String nameRu;

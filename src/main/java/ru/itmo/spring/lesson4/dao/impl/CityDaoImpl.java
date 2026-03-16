@@ -1,4 +1,4 @@
-package ru.itmo.spring.lesson4;
+package ru.itmo.spring.lesson4.dao.impl;
 
 
 import lombok.RequiredArgsConstructor;
@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.jdbc.core.RowMapper;
+import ru.itmo.spring.lesson4.model.City;
+import ru.itmo.spring.lesson4.dao.CityDao;
 
 import java.util.List;
 import java.util.Map;
