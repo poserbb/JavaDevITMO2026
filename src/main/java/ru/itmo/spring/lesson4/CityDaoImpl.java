@@ -13,10 +13,10 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class CitiesDaoImpl implements CityDao {
-    private static final RowMapper<Cities> CITIES_ROW_MAPPER = (rs, rowNum) -> {
-        Cities city = new Cities();
-        city.setId((long) rs.getInt("id"));
+public class CityDaoImpl implements CityDao {
+    private static final RowMapper<City> CITIES_ROW_MAPPER = (rs, rowNum) -> {
+        City city = new City();
+        city.setId(rs.getLong("id"));
         city.setCode(rs.getInt("code"));
         city.setNameRu(rs.getString("name_ru"));
         city.setNameEn(rs.getString("name_en"));
@@ -28,7 +28,7 @@ public class CitiesDaoImpl implements CityDao {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Cities> findAll() {
+    public List<City> findAll() {
         String sql = """
                 SELECT id, code, name_ru, name_en, population 
                 FROM cities 
@@ -39,50 +39,41 @@ public class CitiesDaoImpl implements CityDao {
     }
 
     @Override
-    public Optional<Cities> findById(Integer id) {
+    public Optional<City> findById(Integer id) {
         String sql = """
                 SELECT id, code, name_ru, name_en, population 
                 FROM cities 
                 WHERE id = :id
                 """;
 
-        return jdbcTemplate.query(sql, Map.of("id", id), CITIES_ROW_MAPPER)
-                .stream()
-                .findFirst();
+        return jdbcTemplate.query(sql, Map.of("id", id), CITIES_ROW_MAPPER).stream().findFirst();
     }
 
     @Override
-    public Optional<Cities> findByCode(int code) {
+    public Optional<City> findByCode(int code) {
         String sql = """
                     SELECT id, code, name_ru, name_en, population 
                     FROM cities 
                     WHERE code = :code
                 """;
 
-        return jdbcTemplate.query(sql, Map.of("code", code), CITIES_ROW_MAPPER)
-                .stream()
-                .findFirst();
+        return jdbcTemplate.query(sql, Map.of("code", code), CITIES_ROW_MAPPER).stream().findFirst();
     }
 
     @Override
-    public void save(Cities city) {
+    public void save(City city) {
         String sql = """
                     INSERT INTO cities (code, name_ru, name_en, population) 
                     VALUES (:code, :nameRu, :nameEn, :population)
                 """;
 
-        Map<String, Object> params = Map.of(
-                "code", city.getCode(),
-                "nameRu", city.getNameRu(),
-                "nameEn", city.getNameEn(),
-                "population", city.getPopulation()
-        );
+        Map<String, Object> params = Map.of("code", city.getCode(), "nameRu", city.getNameRu(), "nameEn", city.getNameEn(), "population", city.getPopulation());
 
         jdbcTemplate.update(sql, params);
     }
 
     @Override
-    public void update(Cities city) {
+    public void update(City city) {
         String sql = """
                     UPDATE cities
                     SET code = :code,
@@ -92,13 +83,7 @@ public class CitiesDaoImpl implements CityDao {
                     WHERE id = :id
                 """;
 
-        Map<String, Object> params = Map.of(
-                "id", city.getId(),
-                "code", city.getCode(),
-                "nameRu", city.getNameRu(),
-                "nameEn", city.getNameEn(),
-                "population", city.getPopulation()
-        );
+        Map<String, Object> params = Map.of("id", city.getId(), "code", city.getCode(), "nameRu", city.getNameRu(), "nameEn", city.getNameEn(), "population", city.getPopulation());
 
         jdbcTemplate.update(sql, params);
     }

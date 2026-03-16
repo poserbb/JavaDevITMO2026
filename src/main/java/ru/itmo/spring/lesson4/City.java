@@ -6,9 +6,9 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cities {
+public class City {
 
-    @Getter
+
     @Setter
     private Long id;
     private int code;
@@ -16,7 +16,7 @@ public class Cities {
     private String nameEn;
     private Integer population;
 
-    public Cities(int code, String nameRu, String nameEn, Integer population) {
+    public City(int code, String nameRu, String nameEn, Integer population) {
         this.code = code;
         this.nameRu = nameRu;
         this.nameEn = nameEn;
@@ -26,13 +26,11 @@ public class Cities {
     @Override
     public String toString() {
         return String.format("Код %s \n" +
-                "Название: %s \n" +
-                "название на английском: %s \n" +
-                "Население: %d",
-            code, nameRu, nameEn, population);
+                        "Название: %s \n" +
+                        "название на английском: %s \n" +
+                        "Население: %d",
+                code, nameRu, nameEn, population);
     }
-
-
 
 
 }

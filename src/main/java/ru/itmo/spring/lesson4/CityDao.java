@@ -1,20 +1,22 @@
 package ru.itmo.spring.lesson4;
 
 
-
 import java.util.List;
 import java.util.Optional;
 
 public interface CityDao {
 
-    List<Cities> findAll();
-    Optional<Cities> findById(Integer id);
-    Optional<Cities> findByCode(int code);
-    void save(Cities cities);
-    void update(Cities cities);
+    List<City> findAll();
+
+    Optional<City> findById(Integer id);
+
+    Optional<City> findByCode(int code);
+
+    void save(City cities);
+
+    void update(City cities);
+
     void delete(Integer id);
-
-
 
 
 }

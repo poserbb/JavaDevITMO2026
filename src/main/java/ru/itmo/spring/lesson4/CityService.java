@@ -10,11 +10,11 @@ import java.util.Scanner;
 
 @Service
 @RequiredArgsConstructor
-public class CityServise {
-    private  final  CityDao cityDao;
-    private  final Scanner scanner = new Scanner(System.in);
+public class CityService {
+    private final CityDao cityDao;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public  void addCity() {
+    public void addCity() {
         System.out.println("\n Добавление нового города");
 
         System.out.print("Введите код города: ");
@@ -30,21 +30,21 @@ public class CityServise {
         System.out.print("Введите численность населения: ");
         int population = Integer.parseInt(scanner.nextLine());
 
-        Cities city = new Cities(code, nameRu, nameEn, population);
+        City city = new City(code, nameRu, nameEn, population);
         cityDao.save(city);
         System.out.println("Город добавлен! ID: " + city.getId());
     }
 
     public void viewAllCities() {
         System.out.println("\n--- Список всех городов ---");
-        List<Cities> cities = cityDao.findAll();
+        List<City> cities = cityDao.findAll();
 
         if (cities.isEmpty()) {
             System.out.println("Список городов пуст");
             return;
         }
 
-        for (Cities city : cities) {
+        for (City city : cities) {
             System.out.printf("│ %-2d │ %-6s │ %-16s │ %-16s │ %-8d │%n",
                     city.getId(), city.getCode(), city.getNameRu(),
                     city.getNameEn(), city.getPopulation());
@@ -56,9 +56,9 @@ public class CityServise {
         System.out.print("\nВведите код города: ");
         int code = scanner.nextInt();
 
-        Optional<Cities> cityOpt = cityDao.findByCode(code);
+        Optional<City> cityOpt = cityDao.findByCode(code);
         if (cityOpt.isPresent()) {
-            Cities city = cityOpt.get();
+            City city = cityOpt.get();
             System.out.println("Город найден:");
             System.out.printf("ID: %d, Код: %s, %s (%s), Население: %d%n",
                     city.getId(), city.getCode(), city.getNameRu(),
@@ -73,13 +73,13 @@ public class CityServise {
         int id = Integer.parseInt(scanner.nextLine());
 
 
-        Optional<Cities> cityOpt = cityDao.findById(id);
+        Optional<City> cityOpt = cityDao.findById(id);
         if (cityOpt.isEmpty()) {
             System.out.println("Город с ID " + id + " не найден");
             return;
         }
 
-        Cities city = cityOpt.get();
+        City city = cityOpt.get();
         System.out.println("Текущая информация: " + city.getNameRu() + " (" + city.getCode() + ")");
 
         System.out.print("Новый код (Enter - оставить '" + city.getCode() + "'): ");
@@ -108,13 +108,13 @@ public class CityServise {
         System.out.print("\nВведите ID города для удаления: ");
         int id = Integer.parseInt(scanner.nextLine());
 
-        Optional<Cities> cityOpt = cityDao.findById(id);
+        Optional<City> cityOpt = cityDao.findById(id);
         if (cityOpt.isEmpty()) {
             System.out.println("Город с ID " + id + " не найден");
             return;
         }
 
-        Cities city = cityOpt.get();
+        City city = cityOpt.get();
         System.out.println("Вы уверены, что хотите удалить город " + city.getNameRu() + "? (да/нет)");
         String confirm = scanner.nextLine();
 

@@ -4,17 +4,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import java.util.Scanner;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class CitiesRunApp implements CommandLineRunner {
+public class CityRunApp implements CommandLineRunner {
 
-    private final CityServise cityService;
+    private final CityService cityService;
     private final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        SpringApplication.run(CitiesRunApp.class, args);
+        SpringApplication.run(CityRunApp.class, args);
     }
 
     @Override
