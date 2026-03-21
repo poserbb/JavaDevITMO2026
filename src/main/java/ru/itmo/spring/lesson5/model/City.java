@@ -25,16 +25,16 @@ public class City implements Serializable {
     @Column(name = "code", nullable = false, unique = true)
     private int code;
 
-    @Column(name = "nameRu", nullable = false)
+    @Column(name = "name_ru", nullable = false)
     private String nameRu;
 
-    @Column(name = "nameEn")
+    @Column(name = "name_en")
     private String nameEn;
 
     @Column(name = "population")
     private Integer population;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "region_id", nullable = false)
     private Region region;
 

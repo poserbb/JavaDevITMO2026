@@ -17,5 +17,5 @@ public interface CityRepository extends JpaRepository<City, Long> {
     List<City> findAllByRegion(Region region);
 
     @Query("SELECT c FROM City c JOIN FETCH c.region WHERE c.id = :id")
-    Optional<City> findByIdWithRegion(@Param("id") Long id);
+    Optional<City> findByIdWithRegion(Long id);
 }

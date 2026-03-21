@@ -1,0 +1,44 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+
+    <changeSet id="1" author="poserbb">
+        <sql>
+            CREATE TABLE IF NOT EXISTS regions (
+                                                   id BIGSERIAL PRIMARY KEY,
+                                                   code INTEGER NOT NULL UNIQUE,
+                                                   name VARCHAR(100) NOT NULL
+                );
+
+            CREATE TABLE IF NOT EXISTS cities (
+                                                  id BIGSERIAL PRIMARY KEY,
+                                                  code INTEGER NOT NULL UNIQUE,
+                                                  name_ru VARCHAR(100) NOT NULL,
+                name_en VARCHAR(100),
+                population INTEGER,
+                region_id BIGINT NOT NULL REFERENCES regions(id) ON DELETE RESTRICT
+                );
+
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="2" author="poserbb">
+        <sql>
+            INSERT INTO regions (code, name) VALUES
+                                                 (77, 'Московский регион'),
+                                                 (78, 'Санкт-Петербургский регион'),
+                                                 (50, 'Московская область')
+                ON CONFLICT (code) DO NOTHING;
+
+            INSERT INTO cities (code, name_ru, name_en, population, region_id) VALUES
+                                                                                   (495, 'Москва', 'Moscow', 13010112, (SELECT id FROM regions WHERE code = 77)),
+                                                                                   (812, 'Санкт-Петербург', 'Saint Petersburg', 5601911, (SELECT id FROM regions WHERE code = 78))
+                ON CONFLICT (code) DO NOTHING;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

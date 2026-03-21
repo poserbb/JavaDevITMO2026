@@ -15,7 +15,6 @@ import java.util.Scanner;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class CityService {
     private final CityRepository cityRepository;
     private final RegionRepository regionRepository;

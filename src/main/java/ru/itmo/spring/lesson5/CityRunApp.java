@@ -15,7 +15,6 @@ public class CityRunApp implements CommandLineRunner {
 
     private final CityService cityService;
     private final Scanner scanner = new Scanner(System.in);
-    private final TransactionTemplate transactionTemplate;
 
     public static void main(String[] args) {
         SpringApplication.run(CityRunApp.class, args);
@@ -33,17 +32,16 @@ public class CityRunApp implements CommandLineRunner {
 
             switch (choice) {
 
-                case "1" -> transactionTemplate.executeWithoutResult(status -> cityService.addCity());
+                case "1" -> cityService.addCity();
                 case "2" -> cityService.viewAllCities();
                 case "3" -> cityService.findByCode();
-                case "4" -> transactionTemplate.executeWithoutResult(status -> cityService.updateCity());
-                case "5" -> transactionTemplate.executeWithoutResult(status -> cityService.deleteCity());
+                case "4" -> cityService.updateCity();
+                case "5" -> cityService.deleteCity();
 
 
                 case "6" -> cityService.viewAllRegions();
-                case "7" -> transactionTemplate.executeWithoutResult(status -> cityService.addRegion());
-                case "8" ->
-                        transactionTemplate.executeWithoutResult(status -> cityService.deleteRegion()); // Удаление по коду
+                case "7" -> cityService.addRegion();
+                case "8" -> cityService.deleteRegion(); // Удаление по коду
 
                 case "0" -> {
                     System.out.println("\nВыход из программы");

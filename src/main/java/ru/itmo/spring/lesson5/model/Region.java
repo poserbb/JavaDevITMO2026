@@ -21,10 +21,10 @@ public class Region {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "code", nullable = false, unique = true)
+    @Column(name = "code")
     private Integer code;
 
-    @Column(name = "name", nullable = false, length = 200)
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
